@@ -25,13 +25,13 @@
 
 #include <string>
 #include <iostream>
-#include <experimental/filesystem>
+#include <filesystem>
 
 #include "simhash.hpp"
 #include "utils.hpp"
 
 int main(int argc, char* argv[]) {
-    namespace fs = std::experimental::filesystem;
+    namespace fs = std::filesystem;
     // TODO: better argument handling or seperate files for doing simhash
     // and distance calculation
     if (argc == 1) {
