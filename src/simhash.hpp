@@ -38,7 +38,7 @@
 
 namespace hash {
 
-    unsigned long simhash(const std::string s) {
+	static unsigned long simhash(const std::string s) {
         // TODO(stg7): maybe add ngram (2..3) creation for extending bag of word approach
         std::map<std::string, long> features;
         auto tokens = utils::tokenize(s);
@@ -110,7 +110,7 @@ namespace hash {
         return res.to_ulong();
     }
 
-    int hamming_distance(unsigned long x, unsigned long y) {
+	static inline int hamming_distance(unsigned long x, unsigned long y) {
         int dist = 0;
         unsigned long val = x^y;
 
@@ -121,7 +121,7 @@ namespace hash {
         return dist;
     }
 
-    double similarity(const std::string s, const std::string k) {
+	static inline double similarity(const std::string s, const std::string k) {
         unsigned long hash_s = simhash(s);
         unsigned long hash_k = simhash(k);
         return 1 - hamming_distance(hash_s, hash_k) / 64.0;

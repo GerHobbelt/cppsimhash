@@ -36,7 +36,7 @@
 
 namespace utils {
 
-    std::string read_file_as_string(std::string filename) {
+	static std::string read_file_as_string(std::string filename) {
         std::ifstream infile(filename.c_str());
         std::string result = "";
         std::string line;
@@ -47,7 +47,7 @@ namespace utils {
     }
 
     // split is copied from phrasit/src/utils.hpp
-    inline std::vector<std::string>& split(const std::string& s, char delim, std::vector<std::string>& elems) {
+	static inline std::vector<std::string>& split(const std::string& s, char delim, std::vector<std::string>& elems) {
         std::stringstream ss(s);
         std::string item;
         while (std::getline(ss, item, delim)) {
@@ -62,14 +62,14 @@ namespace utils {
     *   \param delim using this character as a delimiter
     *   \return splitted strings as a vector
     */
-    inline std::vector<std::string> split(const std::string& s, char delim) {
+	static inline std::vector<std::string> split(const std::string& s, char delim) {
         std::vector<std::string> elems;
         split(s, delim, elems);
         return elems;
     }
 
     /* ----- new -- */
-    void replaceAll(std::string& str, const std::string& from, const std::string& to) {
+	static void replaceAll(std::string& str, const std::string& from, const std::string& to) {
         if (from.empty())
             return;
         size_t start_pos = 0;
@@ -79,7 +79,7 @@ namespace utils {
         }
     }
 
-    std::vector<std::string> tokenize(std::string s) {
+	static std::vector<std::string> tokenize(std::string s) {
         // tidy up string
         std::transform(s.begin(), s.end(), s.begin(), ::tolower);
         for (auto c : "\n,.-#+*+?=)(/&%$§\"!^<>|;:_\\´`") {

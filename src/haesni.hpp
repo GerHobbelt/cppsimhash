@@ -45,8 +45,8 @@
 
 namespace haesni {
 
-    const int blocksize = 16;  //< blocksize in bytes
-    const int blockbits = 4;  //< precalculated blockbits = log_2(blocksize)
+	static const int blocksize = 16;  //< blocksize in bytes
+	static const int blockbits = 4;  //< precalculated blockbits = log_2(blocksize)
 
 
     /**
@@ -57,7 +57,7 @@ namespace haesni {
     *
     *   \return "aes" encrypted message
     **/
-    inline __m128i compressAES(__m128i* M, const __m128i& K ) {
+    static inline __m128i compressAES(__m128i* M, const __m128i& K ) {
         __m128i m = _mm_load_si128(M);  //< load message
         m = _mm_xor_si128(m, K);  //< xor msg with key
         m = _mm_aesenc_si128(m, K);  //< do one aes encoding round
@@ -73,7 +73,7 @@ namespace haesni {
     *
     *   \return 64 bit hash of string "s" with length "len"
     **/
-    inline unsigned long hash(char* s, const unsigned long len) {
+		static inline unsigned long hash(char* s, const unsigned long len) {
         __m128i H = _mm_setzero_si128();  //< initial value  for hash, set to 00000
         __m128i* V = reinterpret_cast<__m128i *>(s);  //< transform input string to m128i array
 
