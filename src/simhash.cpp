@@ -30,7 +30,12 @@
 #include "simhash.hpp"
 #include "utils.hpp"
 
-int main(int argc, char* argv[]) {
+#if defined(BUILD_MONOLITHIC)
+#define main   cppsimhash_demo_main
+#endif
+
+extern "C"
+int main(int argc, const char** argv) {
     namespace fs = std::filesystem;
     // TODO: better argument handling or seperate files for doing simhash
     // and distance calculation
