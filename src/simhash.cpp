@@ -43,7 +43,7 @@ int main(int argc, const char** argv) {
         std::string content = "";
         std::string line;
         while (std::getline(std::cin, line)) {
-            content = content + " " + line;
+            content += " " + line;
         }
         std::cout << hash::simhash(content) << std::endl;
     }
